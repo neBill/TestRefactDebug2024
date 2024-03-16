@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+  	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/theme.css">
+    <script src="/assets/js/app.js"></script>
+    <link type="image/png" sizes="192x192" rel="icon" href="/favicon.png">    
+    <meta name="apple-mobile-web-app-status-bar" content="#02abab"> 
+    <link rel="manifest" href="/manifest.json">  
+    <link rel="apple-touch-icon" href="/assets/images/logo-192x192.png"> 
+    <!-- <meta name="theme-color" content="#202430">     -->
+  	<title>Тест</title>
+  </head>
+  
+  <body>
+  	<div class="body-cotent" >
+
+      <div class="header" id="header_block">
+        
+        <div class="dropdown-block"> 
+          <div >
+            <button onclick="showHideMenu()" class="dropbtn" id="button_menu">            
+              <svg>  
+                <rect class="svg-burger"></rect>
+                <rect class="svg-burger" y="8"></rect>
+                <rect class="svg-burger" y="16"></rect>
+              </svg>          
+            </button>
+          </div>
+          
+            
+          <div class="dropdown-content" id="dropDownMenu"> 
+            <p><b>Настройки тестирования</b></p> 
+
+            <div class="toggle_block">
+              <div class="toggle_txt">
+               <label class='Toggle'>Новые базы</label>
+              </div>
+              <div class="toggle_btn">
+              <label class='Toggle'>
+                <input type='checkbox' name='toggle' id='new_bases_toggle' class="Toggle__input" unchecked />
+                <span class="Toggle__display" hidden/>
+              </label>
+              </div>
+            </div>
+           
+            <div class="toggle_block">
+              <div class="toggle_txt">
+               <label class='Toggle'>Режим обучения</label>
+              </div>
+              <div class="toggle_btn">
+              <label class='Toggle'>
+                <input type='checkbox' name='toggle' id='learn_mode_toggle' class="Toggle__input" unchecked />
+                <span class="Toggle__display" hidden/>
+              </label>
+              </div>
+            </div>
+
+            <div class="toggle_block">
+              <div class="toggle_txt">
+               <label class='Toggle'>Перемешать вопросы</label>
+              </div>
+              <div class="toggle_btn">
+              <label class='Toggle'>
+                <input type='checkbox' name='toggle' id='shuffle_toggle' class="Toggle__input" unchecked />
+                <span class="Toggle__display" hidden/>
+              </label>
+              </div>
+              
+              <!-- <div class="toggle_block">
+                <div class="toggle_txt">
+                 <label class='Toggle'>Сохранять историю</label>
+                </div>
+                <div class="toggle_btn">
+                <label class='Toggle'>
+                  <input type='checkbox' name='toggle' id='save_history_toggle' class="Toggle__input" unchecked />
+                  <span class="Toggle__display" hidden/>
+                </label>
+                </div>
+              </div>               -->
+            </div><br><br>           
+           
+           <hr class="line"> 
+            
+            <p><b>Оформление</b></p> 
+            <div class="outline">
+              <label id="fontsize">-- Образец шрифта -- </label>
+            </div>
+            <!-- <hr class="line"> -->
+            <button class="font-size-change" id="font-increase" >Увеличить шрифт</button>              
+            <button class="font-size-change" id="font-decrease">Уменьшить шрифт</button>  
+            <button class="font-size-change" id="font-default">Шрифт по-умолчанию</button>  
+            <!--<hr class="line">-->     
+
+            <div class="toggle_block">
+              <div class="toggle_txt">
+               <label class='Toggle'>Темная тема</label>
+              </div>
+              <div class="toggle_btn">
+              <label class='Toggle'>
+                <input type='checkbox' name='toggle' id="theme_toggle" class="Toggle__input" unchecked />
+                <span class="Toggle__display" hidden/>
+              </label>
+              </div>
+            </div><br><br>
+            
+            <hr class="line">
+            
+            <p><b>История тестирования</b></p>
+            
+            <!-- <button class="menu_button" id="history_remover" onclick="clearCurrentHistory()">Удалить текущую</button><br> -->
+
+            <button class="menu_button" id="cashe_remover" onclick="clearCaches()">Очистить кэш</button><br>
+
+            
+
+            <button class="menu_button" id="history_remover" onclick="clearAllHistory()">Удалить 
+ всю историю</button><br>
+
+            <hr class="line">
+
+            
+            <p><b>Дополнительно</b></p>
+          
+            
+               <button class="menu_button" id="help_button" onclick="showHelpPage()">Справка</button>
+            <!-- <button class="menu_button" id="help_button" onclick="dd()">Справка</button> -->
+            
+            <hr class="line">
+
+            
+            <button class="close_button" id="button_hide" onclick="showHideMenu()">Закрыть</button>
+            <br>
+            
+          </div>
+        </div>
+
+        <!-- <div class="hist-block">
+          <button  class="history_button" id="">История</button>
+        </div>  -->
+        
+      </div>
+      
+    		
+        
+      <p id="test-title"></p>
+        
+      
+      
+      <div class="counter-block" id="questions_counter">
+        <p id="counter"></p>    
+      </div>  
+      
+        
+    	<div id="levels" class="levels-block">
+
+        <button id=""  class="button" onclick="rem()">Иге</button> 
+
+        <button id=""  class="button" onclick="showProfilePage()">Temp</button>
+        
+       
+        <!-- <button id="level_5b"  class="test_button">5 стандарт</button>  
+        <button id="level_6b"  class="test_button">6 стандарт</button>      
+        <button id="level_6e" class="test_button">6 эксперт</button>  
+        <button id="ot" class="test_button">Охрана труда 1</button>
+        <button id="ot_maxim" class="test_button">Охрана труда 2</button>
+        <button id="micro_5"  class="test_button">Микротесты 5 р</button>
+        <button id="micro_6" class="test_button">Микротесты 6 р</button>         -->
+      
+      </div>
+      
+    	<div class="results-block" id="results">		
+    		<p id="result"></p>
+    		<p id="wrong_results"></p>
+    		<p id="errors"></p>  
+    	</div>     
+      
+      <div class="test-block" id="test" > 
+        <button disabled class="question-button" id="question"></button>
+        <hr class="line">
+        <button onclick="check(0)" class="option_button" id="option0"></button>    
+        <button onclick="check(1)" class="option_button" id="option1"></button>    
+        <button onclick="check(2)" class="option_button" id="option2"></button>    
+        <button onclick="check(3)" class="option_button" id="option3"></button>  
+      </div>        
+        
+     
+      <div id="nav_block" class="footer" >    
+        <div class="home_block">  
+          <button class="footer_button" id="button_home" onclick="">На главную</button>
+        </div>
+       
+        <div class="next_block">
+          <button class="footer_button" id="button_next" onclick="">Следующий</button>
+        </div><br><br>
+      </div>
+
+
+      <div class="help_page" id="help_block"><br>
+        <div>
+          <button class="footer_button" id="help_hide_top" onclick="hideHelpPage()">На главную</button><br>
+        <div class="help-text-format">  
+        
+         
+
+          <h3> Описание </h3>
+
+            Приложение для подготовки к тестированию ЕКЭ.<br><br>
+            <u>Источники тестовых вопросов:</u><br><br>
+
+            - вопросы разделов "Микротесты" - базы микротестирования экзаменационной платформы "StartExam" (где проходим микротесты и сдаем ЕКЭ). Вопросы относятся к профуровню "База"; <br>
+            - вопросы разделов "Охрана труда" - сайт "Конструктор тестов"; <br>
+            - вопросы по разрядам и профуровням (пока только газоразделение) - вопросы разработанные ИТР установки для ЕКЭ.
+
+            <h3>Основные возможности</h3>  
+
+            <h4>1. Сохранение истории тестирования. </h4>
+
+            История прохождения сохраняется для каждого теста отдельно. При остановке тестирования показываются ошибки. После прохождения всего теста история сбрасывается при повторном выборе данного теста.<br> 
+            Есть возможность сбросить всю историю тестирования нажав пункт меню "Удалить историю". Удаляется история для всех тестов.
+
+
+
+           <h4> 2. Режимы прохождения тестов.</h4>
+            <ul>
+              <li>"<u>Режим контроля</u>" - включен по умолчанию. В этом режиме результаты прохождения показываются при завершении теста или при остановке тестирования;</li>
+              <li>"<u>Режим обучения</u>" - включается в настройках. При включенном переключателе "Режим обучения", если ответ правильный, происходит автоматический переход на с
+                ледующий вопрос. При неверном ответе - показываются верный и неверный варианты ответа. Результаты показываются при завершении теста или при остановке 
+                тестирования.</li>
+                      </ul>
+
+            <h4>3. Опция перемешивания вопросов. </h4>
+
+            "<u>Перемешивание вопросов</u>" - включается в настройках. При включенном переключателе "Перемешивание вопросов" вопросы будут перемешаны при каждом выборе теста. Данный режим позволяет "погонять" вопросы в случайном порядке. При остановке тестирования показываются ошибки.        
+            В данном режиме история сохраняется только в рамках текущей сессии тестирования. При повторном выборе теста, история сбрасывается.<br>
+
+            <h4>4. Оформление. </h4>
+
+              "<u>Темная тема</u>" - включает темную тему приложение. Выключение переключателя включает тему по-умолчанию;<br>
+              Есть возможность изменить размер шрифта или установить значение по-умолчанию.
+
+
+            <h3>Поддержка</h3>
+
+            При возникновении вопросов или проблем с приложением - обращайтесь лично или пишите в WhatsApp:         
+
+
+            <br><br><h3><a href="https://wa.me/79234090881?text=Привет! Есть+вопрос">Ссылка для связи</a></h3><br><br>
+          
+         
+          
+
+          
+
+          
+        </div> <br>
+               
+        <div >
+            <button padding-bottom="2%" class="footer_button" id="help_hide" onclick="hideHelpPage()">На главную</button><br> 
+         <br>
+          
+        </div> <br><br>
+        <!-- <div >              -->
+         <!-- <br><br> -->
+        <!-- </div> -->
+       
+        
+      </div>
+      </div>
+
+      <div class="profile_page" id="profile_block">
+        <div class="search_block">
+          <!-- <label>Тест:</label> -->
+          <select class="drop_down" id="drop_down_list">
+              <!-- <option>Dropdown Items</option> -->
+          </select>      
+        
+          <!-- <label>Вопрос:</label> -->
+            
+          <input class="input_num" id="input_number" type="text" size="20" >   
+
+          <button class="button_show_question" id="show_question">Показать</button> 
+
+        </div>  
+
+        <div class="" id="qust_btn_container">
+
+
+        </div>
+          
+        
+      </div>
+    
+      <script src="/assets/js/ui.js"></script>
+      <script src="/assets/js/data.js"></script>
+      <script src="/assets/js/ot.js"></script>
+      <script src="/assets/js/econs_added.js"></script>
+      <script src="/assets/js/micro5.js"></script>
+      <script src="/assets/js/micro6.js"></script>
+      <script src="/assets/js/otmaxim.js"></script>
+      <script src="/assets/js/settings.js"></script>
+      <script src="/assets/js/newBases.js"></script>
+        
+    </div>
+  
+  </body>
+</html>

@@ -78,26 +78,30 @@ function showErrors(id) {
 
   const answerIndex = indexes[1]; 
   
-  document.getElementById('question').innerHTML = currentTest.test[questIndex][0];
+  //document.getElementById('question').innerHTML = currentTest.test[questIndex][0];
+
+  document.getElementById('question').innerHTML = tempAnswer[questIndex][0];
   
   for (var i = 0; i < 4; ++i) {
     
     document.getElementById('option' + i).style.border = 'none';
     
-    if (currentTest.test[questIndex][1][i][1] == 1) {
+    if (tempAnswer[questIndex][1][i][1] == 1) {
       
       document.getElementById('option' + i).style.border = 'var(--right-answer-border)';     
     } 
 
      document.getElementById('option' + i).disabled = true;
     
-     document.getElementById('option' + i).innerHTML = currentTest.test[questIndex][1][i][0];
+     document.getElementById('option' + i).innerHTML = tempAnswer[questIndex][1][i][0];
    
   }
 
   document.getElementById('option' + answerIndex).style.border = 'var(--wrong-answer-border)';
   
 }
+
+
 
 function updateQuestionBlock() {
 
@@ -151,6 +155,7 @@ function updateQuestionBlock() {
 
 
 function setTrainingMode(optionIndex) {
+ 
 
   document.getElementById('button_next').style.display = "inline-block";
 
@@ -352,6 +357,8 @@ function saveTestHistory(optionIndex) {
   //const  wrongIndex = getWrongOptionIndex(index);
   ////////////////////////////////////////////////
 
+  //alert(optionIndex)
+
   let testSavedName = currentTest.id;
 
   const savedItem = localStorage.getItem(testSavedName);
@@ -360,11 +367,15 @@ function saveTestHistory(optionIndex) {
 
   if (optionIndex != rightOptionIndex) {
 
-    const  wrongIndex = getWrongOptionIndex(optionIndex);
+   // alert(optionIndex)
+
+    const  wrongIndex = getWrongOptionIndex(optionIndex);  
 
     wrongOption = `[${currentIndex.index},${wrongIndex}]`;
 
   }
+
+  
 
 
   if(savedItem == null){
@@ -389,8 +400,9 @@ function saveTestHistory(optionIndex) {
         historyData += "; ";
 
       }
-
-
+      
+     // alert(newData)
+      
       if (wrongOption.length == 0) {        
 
 
@@ -399,10 +411,12 @@ function saveTestHistory(optionIndex) {
       } else {
 
         newData = `${currentIndex.index}$${historyData}${wrongOption}`;
+        //alert(newData)
+        
 
       }
 
-
+        
       localStorage.setItem(testSavedName, newData);
 
     }
@@ -415,6 +429,10 @@ function saveTestHistory(optionIndex) {
 //получаем соответствующий индекс в несортированном массиве для правильного сохранения истории
 function getWrongOptionIndex(chosenIndex) {
 
+ // alert(chosenIndex)
+
+  let saveIndex;
+
   const currentOption = currentTest.test[currentIndex.index][1][chosenIndex].toString();
   
   const unshuffledOptions = tempAnswer[currentIndex.index]; 
@@ -422,26 +440,29 @@ function getWrongOptionIndex(chosenIndex) {
   unshuffledOptions[1].forEach((item, index) => {
 
     if (item == currentOption) {
-      return index;         
+      //alert(index + " --- "  + "here")
+       saveIndex = index;         
     }   
     
   });
+
+ // alert(saveIndex)
+
+  return saveIndex;
  
 }
 
 
-function check(index) {  
+function checkAnswer(chosenOptionIndex) {  
 
   isAnswerDone = true; 
 
- /// const  wrongIndex = getWrongOptionIndex(index);
 
-  
+ // alert(chosenOptionIndex);
   //finilizeTest
   if (currentIndex.index === currentTest.test.length - 1) {  
-
-       
-    saveTestHistory(index); 
+    
+    saveTestHistory(chosenOptionIndex); 
     showResultsPage();
     showTestResult(true);
 
@@ -452,17 +473,17 @@ function check(index) {
   }
  
   if(isHistorySave){   
-    saveTestHistory(index);
+    saveTestHistory(chosenOptionIndex);
   }
 
 
   //  LearnMode //////////////////////////
   //при верном ответе автоматически преходит на следующий вопрос, в новой редакции переход осуществляется пользователем
-  //if (isLearnMode === true && optionIndex != rightOptionIndex) { 
+  //if (isLearnMode === true && index != rightOptionIndex) { 
   ///////////////////////////////////////////////////////////////////////////
  // if (isLearnMode === true) { 
-  if (isLearnMode === true && index != rightOptionIndex) { 
-    setTrainingMode(index);
+  if (isLearnMode === true && chosenOptionIndex != rightOptionIndex) { 
+    setTrainingMode(chosenOptionIndex);
     currentIndex.index++;
     return;
   } 
@@ -471,15 +492,7 @@ function check(index) {
   updateQuestionBlock();
 }
 
-// function finilizeTest(optionIndex) {
- 
-//   saveTestHistory(optionIndex); 
-//   showResultsPage();
-//   showTestResult(true);
 
-//   currentIndex.index = 0;
-
-// }
 
 
 

@@ -55,6 +55,17 @@ body.dark-theme {
   
 }
 
+
+.selected{
+
+  background-color : red;
+}
+
+/* .incorrect { 
+
+  border: var(--wrong-answer-border);
+} */
+
 .count_button {  
   height: 32px;
   max-height: 32px;
@@ -168,6 +179,9 @@ body.dark-theme {
 #errors{
 
   text-align: left;
+  justify-content: left;
+  /* background-color: #05fa3a; */
+  margin: 2% 0% 6% 1%;
 }
 p:active{
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

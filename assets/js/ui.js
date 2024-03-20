@@ -8,6 +8,8 @@ let isShuffle = false;
 let isAnswerDone = false;
 let isNewBases = false;
 let tempAnswer = [];
+const correctBorder = "var(--right-answer-border)";
+const incorrectBorder = "var(--wrong-answer-border)";
 
 
 class CurrentTest {
@@ -78,8 +80,6 @@ function showErrors(id) {
 
   const answerIndex = indexes[1]; 
   
-  //document.getElementById('question').innerHTML = currentTest.test[questIndex][0];
-
   document.getElementById('question').innerHTML = tempAnswer[questIndex][0];
   
   for (var i = 0; i < 4; ++i) {
@@ -88,7 +88,7 @@ function showErrors(id) {
     
     if (tempAnswer[questIndex][1][i][1] == 1) {
       
-      document.getElementById('option' + i).style.border = 'var(--right-answer-border)';     
+      document.getElementById('option' + i).style.border = correctBorder;     
     } 
 
      document.getElementById('option' + i).disabled = true;
@@ -97,48 +97,33 @@ function showErrors(id) {
    
   }
 
-  document.getElementById('option' + answerIndex).style.border = 'var(--wrong-answer-border)';
+  document.getElementById('option' + answerIndex).style.border = incorrectBorder;
   
 }
 
 
 
-function updateQuestionBlock() {
+function updateQuestionBlock() {  
 
-  //alert(currentTest.test[0])
-
-  let currentQuestionBlock = currentTest.test[currentIndex.index]; 
-
-  //let currentQuestionBlock = currentTest.test.slice(currentIndex.index, currentIndex.index + 1)
+  let currentQuestionBlock = currentTest.test[currentIndex.index];  
 
   let optionsCount = currentQuestionBlock[1].length;
   
-  //alert(currentQuestionBlock[0][1].length)
-  
-  // let optionsCount = currentQuestionBlock[0].length;  
-
-  //alert(optionsCount)
-
-  
-
   if(optionsCount < 4) {
 
     while(optionsCount < 4) {
 
       currentQuestionBlock[1].push(["Нет варианта ответа (*)", 0]);
+
       optionsCount++;
 
     }
 
   }  
 
- // alert(currentTest.test[0])
-
   shuffle(currentQuestionBlock[1]);  
 
- // alert(currentTest.test[0])
-  
-
+ 
   for (var i = 0; i < 4; ++i) {
     if (currentQuestionBlock[1][i][1] == 1) {
       rightOptionIndex = i;
@@ -154,8 +139,7 @@ function updateQuestionBlock() {
 }
 
 
-function setTrainingMode(optionIndex) {
- 
+function setTrainingMode(optionIndex) { 
 
   document.getElementById('button_next').style.display = "inline-block";
 
@@ -163,13 +147,13 @@ function setTrainingMode(optionIndex) {
 
   if (currentTest.test[currentIndex.index][1][optionIndex][1] == 1) {
 
-    borderColor = "var(--right-answer-border)";
+    borderColor = correctBorder;
 
   } else {
 
-    borderColor = "var(--wrong-answer-border)";
+    borderColor = incorrectBorder;
 
-    document.getElementById('option' + rightOptionIndex).style.border = "var(--right-answer-border)";
+    document.getElementById('option' + rightOptionIndex).style.border = correctBorder;
   }
 
     document.getElementById('option' + optionIndex).style.border = borderColor;  
@@ -252,43 +236,146 @@ function showTestResult(isTestFinished) {
 
   document.getElementById('result').innerHTML = result;
 
-  for (var index = 0; index < wrongAnswers.errors.length; ++index) {
-    const btn = document.getElementById('errors');
-    btn.innerHTML += `<button id="${index}" class="error_button">${index + 1}</button>`;
-  }
+  ///////////////////////////////////////////////////////////
+
+  // for (var index = 0; index < wrongAnswers.errors.length; ++index) {
+  //   const btn = document.getElementById('errors');
+  //   btn.innerHTML += `<button id="${index}" class="error_button">${index + 1}</button>`;
+
+
+  // }
+
+  createButtons(wrongAnswers.errors, "error_button", "errors");
+
+  /////////////////////////////////////////////////
+
 }
 
+function createButtons(buttonsArray, className, parantId) {
+
+  const parant = document.getElementById(parantId);
+
+  for(let i = 0; i < buttonsArray.length; i++){
+    let btn = document.createElement('button')
+    btn.innerText = i + 1;
+    btn.className = className;
+    btn.id = i;   
+    parant.appendChild(btn)    
+  }
+
+}
+
+function removeButtons(parantId) {
+  
+  const parant = document.getElementById(parantId);  
+  
+  parant.replaceChildren();
+  
+}
+
+// function removeQuestionButtons() {
+  
+//   const buttons = document.getElementById('qust_btn_container');  
+  
+//   buttons.replaceChildren();
+  
+// }
+
+//const errorsContainer = document.querySelector('#errors');
 
 
-document.addEventListener("click", function(event) {
+document.addEventListener("click", (event) => {
+
   const buttonClass = event.target.className;
 
-  const buttonId = event.target.id;
+  const buttonId = event.target.id;  
 
   if (buttonClass == "error_button") {
 
-
-    const links = document.querySelectorAll(".error_button");
-
+    chageButtonColor(buttonId);  
 
     showErrors(buttonId);
 
-    links.forEach(link => {
-      link.setAttribute("style", "background:`:root { --main-bg-color}`");
-
-    });
-    document.getElementById(buttonId).style.background = "var(--error-btn-color)";
-  }
-
-
+  }  
 
   if (buttonClass == "font-size-change") {
 
-     chageFontSize(buttonId);
+    chageFontSize(buttonId);
   }
 
 
 });
+
+function chageButtonColor(buttonId) {  
+
+    for (let button of document.getElementById('errors').children) {
+      
+      button.style.backgroundColor = "var(--main-bg-color)";
+
+      if(button.id == buttonId) {
+
+        button.style.backgroundColor = "var(--error-btn-color)";
+    
+      }
+
+    }
+
+    //showErrors(buttonId);
+}
+
+
+
+//////////////////////////////////////////////////
+
+    //document.getElementById(buttonId).style.background = "var(--error-btn-color)";
+
+    //const button = document.getElementById(buttonId);
+
+    //alert(buttonId)
+
+    //button.classList.add('.selected');
+   //button.style.background = "var(--error-btn-color)";
+
+
+
+    // showErrors(buttonId);
+
+    // links.forEach(link => {
+    //   link.setAttribute("style", "background:`:root { --main-bg-color}`");
+
+    // });
+    // document.getElementById(buttonId).style.background = "var(--error-btn-color)";
+
+    // errorButtons.forEach(button => {
+      
+
+    //    button.classList.add('selected');
+        
+  
+    //   });
+
+  
+
+
+
+  // if (buttonClass == "font-size-change") {
+
+  //    chageFontSize(buttonId);
+  // }
+
+
+// });
+
+// document.addEventListener("click", function(event) {
+
+//   const buttonClass = event.target.className;
+
+//   if (buttonClass == "font-size-change") {
+
+//     chageFontSize(buttonId);
+//  }
+
+// });
 
 
 //переход на главную страницу,нажата кнопка На главную
@@ -307,6 +394,8 @@ button_home.addEventListener("click", function(event) {
   if (buttonText == "На главную") { 
 
     isAnswerDone = false;
+
+   // removeButtons("errors");
 
     showLevels();
 
@@ -674,9 +763,11 @@ function setTestHistory(testId) {
 show_question.addEventListener("click", function(){
   const quest_num = document.getElementById('input_number').value;
   
-  removeQuestionButtons();
+  //removeQuestionButtons();
+
+  removeButtons("qust_btn_container");
   
-  //alert(quest_num.value)
+  //заменить на универсальный метод создания кнопок......................................................./////////////////
   createQuestionButtons(currentTest.test[quest_num]);
   
 });
@@ -730,13 +821,15 @@ function createQuestionButtons(question_block) {
   
 }
 
-function removeQuestionButtons() {
+
+
+// function removeQuestionButtons() {
   
-  const buttons = document.getElementById('qust_btn_container');  
+//   const buttons = document.getElementById('qust_btn_container');  
   
-  buttons.replaceChildren();
+//   buttons.replaceChildren();
   
-}
+// }
 
 function fillTestsList(testsList) {
 

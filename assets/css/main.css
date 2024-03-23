@@ -435,9 +435,9 @@ input[type="text"], textarea {
   border: 1px var(--border-color);
   padding: 4px;
   border-radius: 4px;
- -webkit-appearance: none;
+ /* -webkit-appearance: none;
  -moz-appearance: none;
- appearance: none;
+ appearance: none; */
  
   
 }

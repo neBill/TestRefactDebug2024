@@ -975,7 +975,7 @@ function fillTestsList(testsList) {
 drop_down_list.addEventListener('change', (event) => {
     
   showTestLength(event.target.value); 
-    
+
 });
 
 
@@ -1007,6 +1007,7 @@ function getChosenTest(testName) {
 
   return test;
 }
+
 
 
 

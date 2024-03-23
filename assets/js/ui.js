@@ -760,20 +760,147 @@ function setTestHistory(testId) {
   
 // }
 
-show_question.addEventListener("click", function(){
-  const quest_num = document.getElementById('input_number').value;
-  
-  //removeQuestionButtons();
 
-  removeButtons("qust_btn_container");
+//===================================================================================================//
+
+// show_question.addEventListener("click", function(){
+//   const quest_num = document.getElementById('input_number').value;
   
-  //заменить на универсальный метод создания кнопок......................................................./////////////////
-  createQuestionButtons(currentTest.test[quest_num]);
+//   //removeQuestionButtons();
+
+//   removeButtons("qust_btn_container");
+  
+//   //заменить на универсальный метод создания кнопок......................................................./////////////////
+//   createQuestionButtons(currentTest.test[quest_num]);
+  
+// });
+
+// function createQuestionButtons(question_block) {
+
+  
+//   const line = document.createElement('hr');
+
+//   line.className = "line";
+
+//   const buttons = document.getElementById('qust_btn_container');
+
+//   //alert(question_block[0])
+
+//   let btn_contant; 
+
+//   for(let i = 0; i < 5; i++) {  
+
+//     if(i == 0) {
+
+//       btn_contant = question_block[0];
+      
+//     }  else {
+
+//       btn_contant = question_block[1][i -1];
+      
+//     }
+    
+    
+//     if(i == 1) {
+
+//       buttons.appendChild(line);
+      
+//     }    
+
+//     const testButton = document.createElement('button');   
+
+//     testButton.id = i;
+
+//     testButton.className = "option_button";
+
+//     testButton.textContent = btn_contant;
+
+//     buttons.appendChild(testButton);
+    
+
+//   }
+
+ 
+  
+// }
+
+
+
+// function removeQuestionButtons() {
+  
+//   const buttons = document.getElementById('qust_btn_container');  
+  
+//   buttons.replaceChildren();
+  
+// }
+
+// function fillTestsList(testsList) {
+
+//   //alert(Object.keys(testsList).length)
+
+//   const list = Object.values(testsList);
+
+//   let dropDownList = document.getElementById("drop_down_list");
+
+  
+  
+//     for (let i = 0; i < list.length; i++) {
+//         let testName = list[i][1];
+//         let el = document.createElement("option");
+//         el.textContent = testName;
+//         el.value = testName;
+//         if(i == 0){
+
+//           el.selected = true;
+//         }
+      
+//         dropDownList.appendChild(el);
+//     }
+//     // res.innerHTML = "Elements Added";
+// }
+
+// drop_down_list.addEventListener('change', function (event){
+
+//   const testList = getTestList();
+//  // const curTest = testList[event.target.value][0];
+
+  
+//   //const testName = event.target.value;
+//   alert(Object.values(testList).length)
+
+  
+// });
+
+
+
+//====================================================================================
+
+
+show_question.addEventListener("click", function(){
+  
+  const quest_num = document.getElementById('input_number').value;
+
+  if(quest_num === '') {
+    alert('Введите номер вопроса!');
+    return;
+  }  
+
+  removeQuestionButtons();  
+  
+  createQuestionButtons(quest_num);
   
 });
 
-function createQuestionButtons(question_block) {
 
+function createQuestionButtons(question_number) {
+
+  const testsNames = document.getElementById('drop_down_list');
+
+  const chosenTestName = testsNames.options[testsNames.selectedIndex].text; 
+
+  const test = getChosenTest(chosenTestName) 
+
+  const question_block = test[question_number];
   
   const line = document.createElement('hr');
 
@@ -781,19 +908,17 @@ function createQuestionButtons(question_block) {
 
   const buttons = document.getElementById('qust_btn_container');
 
-  //alert(question_block[0])
-
-  let btn_contant; 
+  let btn_content; 
 
   for(let i = 0; i < 5; i++) {  
 
     if(i == 0) {
 
-      btn_contant = question_block[0];
+      btn_content = question_block[0];
       
     }  else {
 
-      btn_contant = question_block[1][i -1];
+      btn_content = question_block[1][i -1];
       
     }
     
@@ -810,7 +935,7 @@ function createQuestionButtons(question_block) {
 
     testButton.className = "option_button";
 
-    testButton.textContent = btn_contant;
+    testButton.textContent = btn_content;
 
     buttons.appendChild(testButton);
     
@@ -821,54 +946,71 @@ function createQuestionButtons(question_block) {
   
 }
 
-
-
-// function removeQuestionButtons() {
+function removeQuestionButtons() {
   
-//   const buttons = document.getElementById('qust_btn_container');  
+  const buttons = document.getElementById('qust_btn_container');  
   
-//   buttons.replaceChildren();
+  buttons.replaceChildren();
   
-// }
+}
 
 function fillTestsList(testsList) {
-
-  //alert(Object.keys(testsList).length)
 
   const list = Object.values(testsList);
 
   let dropDownList = document.getElementById("drop_down_list");
 
+  for (let i = 0; i < list.length; i++) {
+    let testName = list[i][1];
+    let el = document.createElement("option");
+    el.textContent = testName;
+    el.value = testName;           
+    dropDownList.appendChild(el);
+  }  
   
+  showTestLength(dropDownList[0].value); 
   
-    for (let i = 0; i < list.length; i++) {
-        let testName = list[i][1];
-        let el = document.createElement("option");
-        el.textContent = testName;
-        el.value = testName;
-        if(i == 0){
-
-          el.selected = true;
-        }
-      
-        dropDownList.appendChild(el);
-    }
-    // res.innerHTML = "Elements Added";
 }
 
-drop_down_list.addEventListener('change', function (event){
-
-  const testList = getTestList();
- // const curTest = testList[event.target.value][0];
-
-  
-  //const testName = event.target.value;
-  alert(Object.values(testList).length)
-
-  
+drop_down_list.addEventListener('change', (event) => {
+    
+  showTestLength(event.target.value); 
+    
 });
 
 
+function showTestLength(testName) {  
+  
+  const test = getChosenTest(testName);
+  
+  document.getElementById('test_length').innerText = `Вопросов в тесте: ${test.length}`;
+ 
+}
+
+
+function getChosenTest(testName) {
+
+  let test = [];
+
+  const testList = getTestList();
+
+  const keys = Object.keys(testList);   
+
+  keys.forEach((key, index) => {
+
+    if(testList[key][1] == testName) {        
+
+     test = testList[key][0];
+    }
+
+  });
+
+  return test;
+}
+
+
+
+//===================================================================================
 
 function showResultsPage() {
   document.getElementById('button_home').style.display = "block";

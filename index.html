@@ -122,9 +122,11 @@
 
             
             <p><b>Дополнительно</b></p>
+
+              <button class="menu_button" id="help_button" onclick="showProfilePage()">Для админа</button>    
           
             
-               <button class="menu_button" id="help_button" onclick="showHelpPage()">Справка</button>
+              <button class="menu_button" id="help_button" onclick="showHelpPage()">Справка</button>
             <!-- <button class="menu_button" id="help_button" onclick="dd()">Справка</button> -->
             
             <hr class="line">
@@ -274,28 +276,36 @@
       </div>
 
       <div class="profile_page" id="profile_block">
-        <div class="search_block">
-          <!-- <label>Тест:</label> -->
-          <select class="drop_down" id="drop_down_list">
-              <!-- <option>Dropdown Items</option> -->
-          </select>      
-        
-          <!-- <label>Вопрос:</label> -->
-            
-          <input class="input_num" id="input_number" type="text" size="20" >   
 
-          <button class="button_show_question" id="show_question">Показать</button> 
+        <div class="back_button_block">
+          <button class="button_show_question" id="help_hide" onclick="hideProfilePage()">На главную</button>
+        </div>
+         
+
+        <label id="test_length">Вопросов в тесте: </label>
+        
+        <div class="input_block">          
+          <select class="drop_down" id="drop_down_list"></select>          
+          
+          <!-- <input class="input_num" id="input_number" type="text" size="30" >   -->
+
+          <input class="input_num" id="input_number" type="text"  >
+
+          <button class="button_show_question" id="show_question">Поиск</button>          
 
         </div>  
+        <!-- <button class="button_show_question" id="show_question">Показать</button> -->
 
-        <div class="" id="qust_btn_container">
+        <div class="" id="qust_btn_container"></div>
 
-
-        </div>
+        <!-- <div class="back_button_block">
+          <button class="footer_button" id="help_hide" onclick="hideProfilePage()">На главную</button>
+        </div> -->
           
         
       </div>
-    
+
+      
       <script src="assets/js/ui.js"></script>
       <script src="assets/js/data.js"></script>
       <script src="assets/js/ot.js"></script>

@@ -7,7 +7,7 @@ const assets = [
   '/assets/js/app.js',
   '/assets/js/ot.js',
   '/assets/js/data.js',
-  '/assets/js/econs_added.js',
+  '/assets/js/econsadded.js',
   '/assets/js/settings.js',
   '/assets/js/otmaxim.js',
   '/assets/js/micro5.js',

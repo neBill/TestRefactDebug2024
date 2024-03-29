@@ -1,5 +1,5 @@
 
-.font-size-change, .close_button, .menu_button {
+.font-size-change, .close-button, .menu-button {
   border: 0;
   background-color: inherit;  
   padding-top: 16px;
@@ -12,7 +12,7 @@
  
 }
 
-.font-size-change:active, .menu_button:active, .close_button:active, .clear_history_button:active{
+.font-size-change:active, .menu-button:active, .close-button:active, .clear-history-button:active{
   color: var(--main-fg-color);  
 }
 
@@ -41,7 +41,7 @@ button.Toggle {
   
 }
 
-.Toggle__input {
+.Toggle--input {
   position: absolute;
   opacity: 0;
   
@@ -50,7 +50,7 @@ button.Toggle {
   
 }
 /*круляшок*/
-.Toggle__display {
+.Toggle--display {
   --offset: 0.3em;
   --diameter: 0.7em;
   display: inline-flex;
@@ -67,7 +67,7 @@ button.Toggle {
    
 }
 
-.Toggle__display::before {
+.Toggle--display::before {
   content: "";
   z-index: 2;
   position: absolute;
@@ -84,7 +84,7 @@ button.Toggle {
   
 }
 
-.toggle_block {
+.toggle-block {
 
   width: 100%;
   height: 45px;
@@ -93,14 +93,14 @@ button.Toggle {
   
 }
 
-.toggle_txt {
+.toggle-txt {
   float: left;
   /* background-color: red; */
   cursor: default;
   
   width: 70%;
 }
-.toggle_btn {
+.toggle-btn {
   float: right;
   /* background-color: #27aa41; */
   
@@ -109,26 +109,26 @@ button.Toggle {
 
 
 /*.Toggle:focus,
-.Toggle:focus:not(:focus-visible) .Toggle__display,
-.Toggle__input:focus:not(:focus-visible) + .Toggle__display {
+.Toggle:focus:not(:focus-visible) .Toggle--display,
+.Toggle--input:focus:not(:focus-visible) + .Toggle--display {
   outline: 0;
  
 }*/
 
-.Toggle[aria-pressed="true"] .Toggle__display,
-.Toggle__input:checked + .Toggle__display {
+.Toggle[aria-pressed="true"] .Toggle--display,
+.Toggle--input:checked + .Toggle--display {
   background-color: var(--toogle-on-color);
   
 }
 
-.Toggle[aria-pressed="true"] .Toggle__display::before,
-.Toggle__input:checked + .Toggle__display::before {
+.Toggle[aria-pressed="true"] .Toggle--display::before,
+.Toggle--input:checked + .Toggle--display::before {
   transform: translate(100%, -50%);
   
 }
 
-.Toggle[disabled] .Toggle__display,
-.Toggle__input:disabled + .Toggle__display {
+.Toggle[disabled] .Toggle--display,
+.Toggle--input:disabled + .Toggle--display {
   opacity: 0.6;
   filter: grayscale(40%);
   cursor: not-allowed;

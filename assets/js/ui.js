@@ -10,6 +10,8 @@ let isNewBases = false;
 let tempAnswer = [];
 const correctBorder = "var(--right-answer-border)";
 const incorrectBorder = "var(--wrong-answer-border)";
+const homeButton = document.getElementById('home-button');
+const nextButton = document.getElementById('next-button');
 
 
 class CurrentTest {
@@ -141,7 +143,9 @@ function updateQuestionBlock() {
 
 function setTrainingMode(optionIndex) { 
 
-  document.getElementById('button_next').style.display = "inline-block";
+  // document.getElementById('button-next').style.display = "inline-block";
+
+  nextButton.style.display = "inline-block";
 
   let borderColor = '';
 
@@ -240,12 +244,12 @@ function showTestResult(isTestFinished) {
 
   // for (var index = 0; index < wrongAnswers.errors.length; ++index) {
   //   const btn = document.getElementById('errors');
-  //   btn.innerHTML += `<button id="${index}" class="error_button">${index + 1}</button>`;
+  //   btn.innerHTML += `<button id="${index}" class="error-button">${index + 1}</button>`;
 
 
   // }
 
-  createButtons(wrongAnswers.errors, "error_button", "errors");
+  createButtons(wrongAnswers.errors, "error-button", "errors");
 
   /////////////////////////////////////////////////
 
@@ -275,7 +279,7 @@ function removeButtons(parantId) {
 
 // function removeQuestionButtons() {
   
-//   const buttons = document.getElementById('qust_btn_container');  
+//   const buttons = document.getElementById('qust-btn-container');  
   
 //   buttons.replaceChildren();
   
@@ -290,7 +294,7 @@ document.addEventListener("click", (event) => {
 
   const buttonId = event.target.id;  
 
-  if (buttonClass == "error_button") {
+  if (buttonClass == "error-button") {
 
     chageButtonColor(buttonId);  
 
@@ -378,8 +382,8 @@ function chageButtonColor(buttonId) {
 // });
 
 
-//переход на главную страницу,нажата кнопка На главную
-button_home.addEventListener("click", function(event) {
+//переход на главную страницу, нажата кнопка На главную
+homeButton.addEventListener("click", function(event) {
 
   const buttonText = event.target.textContent
 
@@ -415,10 +419,12 @@ button_home.addEventListener("click", function(event) {
 
 })
 
-button_next.addEventListener("click", function() {
+nextButton.addEventListener("click", function() {
 
   updateQuestionBlock();
-  document.getElementById('button_next').style.display = "none";
+  //document.getElementById('nextbutton').style.display = "none";
+
+  nextButton.style.display = "none";
 
 })
 /////////////////////////////////////////////////////
@@ -588,12 +594,12 @@ function checkAnswer(chosenOptionIndex) {
 
 function showMainPage() {
 
-  document.getElementById('main_page').style.display = "block";
+  document.getElementById('main-page').style.display = "block";
   document.getElementById('results').style.display = "none";
   document.getElementById('levels').style.display = "none";
-  document.getElementById('questions_counter').style.display = 'none';
+  document.getElementById('questions-counter').style.display = 'none';
   document.getElementById('test').style.display = "none";
-  document.getElementById('nav_block').style.display = "none";
+  document.getElementById('nav-block').style.display = "none";
   document.getElementById('result').style.display = "none";
 
 }
@@ -602,24 +608,23 @@ function showMainPage() {
 
 function showLevels() {
 
-  document.getElementById('button_home').style.display = "none";
-  document.getElementById('nav_block').style.display = "none";
+  document.getElementById('home-button').style.display = "none";
+  document.getElementById('nav-block').style.display = "none";
   document.getElementById('levels').style.display = "block";
   document.getElementById('errors').innerHTML = "";
   document.getElementById('test-title').innerHTML = "";
   document.getElementById('results').style.display = "none";
   document.getElementById('test').style.display = "none";
-  document.getElementById('button_menu').style.display = "block";
-  document.getElementById('header_block').style.display = "block";
-  // document.getElementById('remove_history_block').style.display = "none";
+  document.getElementById('menu-button').style.display = "block";
+  document.getElementById('header').style.display = "flex";
+  document.getElementById('remove-history-block').style.display = "none";
 
       wrongAnswers.errors.length = 0;
 
-  //currentQuestionIndex = 0;
 }
 
 function showTest() {
-  document.getElementById('questions_counter').style.display = 'block';
+  document.getElementById('questions-counter').style.display = 'block';
   document.getElementById('levels').style.display = "none";
   document.getElementById('counter').style.display = "block";
 }
@@ -667,9 +672,9 @@ function getErrorsArray() {
 
   if (errors[1].length == 0) return;
 
-  let errors_array = errors[1].split(';');
+  let errorsArray = errors[1].split(';');
 
-  errors_array.forEach(error => {
+  errorsArray.forEach(error => {
 
     var array = JSON.parse(error);
 
@@ -685,7 +690,7 @@ function getErrorsArray() {
 //choose test
 document.addEventListener("click", function(event) {    
 
-  if(event.target.className !== "test_button") return;
+  if(event.target.className !== "test-button") return;
 
   currentTest.id = event.target.id;   
   
@@ -746,179 +751,58 @@ function setTestHistory(testId) {
 
 }
 
-// function chooseTest(testId) { 
-
-//   // const isNewBases = document.getElementById('new_bases_toggle').checked;
-
-//   if(isNewBases) {      
-//     return newTest[testId];    
-//   }
-//   else {  
-//     return testList[testId];
-//   }
-
-  
-// }
-
-
-//===================================================================================================//
-
-// show_question.addEventListener("click", function(){
-//   const quest_num = document.getElementById('input_number').value;
-  
-//   //removeQuestionButtons();
-
-//   removeButtons("qust_btn_container");
-  
-//   //заменить на универсальный метод создания кнопок......................................................./////////////////
-//   createQuestionButtons(currentTest.test[quest_num]);
-  
-// });
-
-// function createQuestionButtons(question_block) {
-
-  
-//   const line = document.createElement('hr');
-
-//   line.className = "line";
-
-//   const buttons = document.getElementById('qust_btn_container');
-
-//   //alert(question_block[0])
-
-//   let btn_contant; 
-
-//   for(let i = 0; i < 5; i++) {  
-
-//     if(i == 0) {
-
-//       btn_contant = question_block[0];
-      
-//     }  else {
-
-//       btn_contant = question_block[1][i -1];
-      
-//     }
-    
-    
-//     if(i == 1) {
-
-//       buttons.appendChild(line);
-      
-//     }    
-
-//     const testButton = document.createElement('button');   
-
-//     testButton.id = i;
-
-//     testButton.className = "option_button";
-
-//     testButton.textContent = btn_contant;
-
-//     buttons.appendChild(testButton);
-    
-
-//   }
-
- 
-  
-// }
-
-
-
-// function removeQuestionButtons() {
-  
-//   const buttons = document.getElementById('qust_btn_container');  
-  
-//   buttons.replaceChildren();
-  
-// }
-
-// function fillTestsList(testsList) {
-
-//   //alert(Object.keys(testsList).length)
-
-//   const list = Object.values(testsList);
-
-//   let dropDownList = document.getElementById("drop_down_list");
-
-  
-  
-//     for (let i = 0; i < list.length; i++) {
-//         let testName = list[i][1];
-//         let el = document.createElement("option");
-//         el.textContent = testName;
-//         el.value = testName;
-//         if(i == 0){
-
-//           el.selected = true;
-//         }
-      
-//         dropDownList.appendChild(el);
-//     }
-//     // res.innerHTML = "Elements Added";
-// }
-
-// drop_down_list.addEventListener('change', function (event){
-
-//   const testList = getTestList();
-//  // const curTest = testList[event.target.value][0];
-
-  
-//   //const testName = event.target.value;
-//   alert(Object.values(testList).length)
-
-  
-// });
 
 
 
 //====================================================================================
 
 
-show_question.addEventListener("click", function(){
+showquestion.addEventListener("click", function(){
   
-  const quest_num = document.getElementById('input_number').value;
+  const questNumber = document.getElementById('input-number').value;
 
-  if(quest_num === '') {
+  if(questNumber === '') {
     alert('Введите номер вопроса!');
     return;
   }  
 
-  removeQuestionButtons();  
+  //removeQuestionButtons('qust-btn-container');  
+  clearQuestionBlock('qust-btn-container');
+
+  //alert(document.getElementById('search-test-block').className)
   
-  createQuestionButtons(quest_num);
+  createQuestionButtons(questNumber);
   
 });
 
 
-function createQuestionButtons(question_number) {
+function createQuestionButtons(questionNumber) {
 
-  const testsNames = document.getElementById('drop_down_list');
+  const testsNames = document.getElementById('dropdownlist');
 
   const chosenTestName = testsNames.options[testsNames.selectedIndex].text; 
 
   const test = getChosenTest(chosenTestName) 
 
-  const question_block = test[question_number];
+  const questionBlock = test[questionNumber];
   
   const line = document.createElement('hr');
 
   line.className = "line";
 
-  const buttons = document.getElementById('qust_btn_container');
+  const buttons = document.getElementById('qust-btn-container');
 
-  let btn_content; 
+  let btnContent; 
 
   for(let i = 0; i < 5; i++) {  
 
     if(i == 0) {
 
-      btn_content = question_block[0];
+      btnContent = questionBlock[0];
       
     }  else {
 
-      btn_content = question_block[1][i -1];
+      btnContent = questionBlock[1][i -1];
       
     }
     
@@ -933,9 +817,9 @@ function createQuestionButtons(question_number) {
 
     testButton.id = i;
 
-    testButton.className = "option_button";
+    testButton.className = "option-button";
 
-    testButton.textContent = btn_content;
+    testButton.textContent = btnContent;
 
     buttons.appendChild(testButton);
     
@@ -946,19 +830,27 @@ function createQuestionButtons(question_number) {
   
 }
 
-function removeQuestionButtons() {
+function clearQuestionBlock(container) {
   
-  const buttons = document.getElementById('qust_btn_container');  
+  const buttonsContainer = document.getElementById(container); 
   
-  buttons.replaceChildren();
-  
+  if (buttonsContainer.hasChildNodes()) { 
+    
+    buttonsContainer.replaceChildren();
+
+  }  
+ 
 }
 
 function fillTestsList(testsList) {
 
   const list = Object.values(testsList);
 
-  let dropDownList = document.getElementById("drop_down_list");
+  let dropDownList = document.getElementById("dropdownlist");
+
+  dropDownList.options.length = 0;
+
+
 
   for (let i = 0; i < list.length; i++) {
     let testName = list[i][1];
@@ -972,18 +864,23 @@ function fillTestsList(testsList) {
   
 }
 
-drop_down_list.addEventListener('change', (event) => {
+dropdownlist.addEventListener('change', (event) => {
     
   showTestLength(event.target.value); 
+  document.getElementById('input-number').value = '';
+  clearQuestionBlock('qust-btn-container');
 
 });
+
+
 
 
 function showTestLength(testName) {  
   
   const test = getChosenTest(testName);
   
-  document.getElementById('test_length').innerText = `Вопросов в тесте: ${test.length}`;
+  document.getElementById('test-length').innerText = `Вопросов в тесте: ${test.length}`;
+
  
 }
 
@@ -1014,14 +911,14 @@ function getChosenTest(testName) {
 //===================================================================================
 
 function showResultsPage() {
-  document.getElementById('button_home').style.display = "block";
-  document.getElementById('button_next').style.display = "none";
+  document.getElementById('home-button').style.display = "block";
+  document.getElementById('next-button').style.display = "none";
   document.getElementById('results').style.display = 'block';
   document.getElementById('test').style.display = "none";
   document.getElementById('result').style.display = "block";
   document.getElementById('counter').style.display = "none";
-  document.getElementById('button_home').innerText = "На главную";
-  // document.getElementById('remove_history_block').style.display = "none";
+  document.getElementById('home-button').innerText = "На главную";
+  document.getElementById('remove-history-block').style.display = "none";
 }
 
 function showChosenTest(testName, testLength) {
@@ -1029,16 +926,16 @@ function showChosenTest(testName, testLength) {
   document.getElementById('test').style.display = "block";
   document.getElementById('counter').innerHTML = "Вопрос: 1/" + testLength;
   document.getElementById('counter').style.display = "block";
-  document.getElementById('questions_counter').style.display = 'block';
+  document.getElementById('questions-counter').style.display = 'block';
   document.getElementById('levels').style.display = "none";
-  document.getElementById('nav_block').style.display = "block";
-  document.getElementById('button_next').style.display = "none";
-  document.getElementById('button_home').innerText = "Завершить";
-  document.getElementById('button_home').style.display = "block";
-  document.getElementById('button_menu').style.display = "none";
+  document.getElementById('nav-block').style.display = "block";
+  document.getElementById('next-button').style.display = "none";
+  document.getElementById('home-button').innerText = "Завершить";
+  document.getElementById('home-button').style.display = "block";
+  document.getElementById('menu-button').style.display = "none";
   document.getElementById('test-title').innerHTML = testName;
-  document.getElementById('header_block').style.display = "none";
-  // document.getElementById('remove_history_block').style.display = "block";
+  document.getElementById('header').style.display = "none";
+  document.getElementById('remove-history-block').style.display = "block";
   
   
 

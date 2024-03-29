@@ -1,4 +1,3 @@
-/* :root { */
 body.light-theme {
   --main-bg-color: #007373;
   --main-fg-color: #FFF;
@@ -20,7 +19,6 @@ body.light-theme {
   
 }
 
-/* :root[theme='dark'] { */
 body.dark-theme {
   --main-border: 0px;
   --main-bg-color: #3e4657;
@@ -41,7 +39,25 @@ body.dark-theme {
   --question-button-width: 0%  1%  2% 1%;
 }
 
-.button, .test_button, .count_button, .option_button, .question-button, .history_button, .clear_history_button {
+body{
+  display: flex;
+  flex-direction:column;  
+  background-color: var(--body-fon);
+  padding-left: 1%;
+  padding-right: 1%;
+  font-size: var(--body-font-size); 
+  user-select: none;
+  hyphens: auto;
+  max-height:9000000px;
+
+} 
+
+.body-content{
+  flex: 1 0 auto;  
+}
+
+
+.button, .test-button, .count-button, .option-button, .question-button, .history-button, .clear-history-button {
   width: 100%; 
   text-align: center;    
   font-size: var(--btn-font-size);
@@ -56,17 +72,7 @@ body.dark-theme {
 }
 
 
-.selected{
-
-  background-color : red;
-}
-
-/* .incorrect { 
-
-  border: var(--wrong-answer-border);
-} */
-
-.count_button {  
+.count-button {  
   height: 32px;
   max-height: 32px;
   margin-top: 0px;
@@ -74,7 +80,7 @@ body.dark-theme {
  
 }   
 
-.option_button{
+.option-button{
 
   text-align: left;  
   padding: 13px;
@@ -82,7 +88,7 @@ body.dark-theme {
  
   
 }
-.button, .test_button { 
+.button, .test-button { 
 
   height: 44px;
   max-height: 44px;
@@ -90,7 +96,7 @@ body.dark-theme {
 
 
 
-.clear_history_button{
+.clear-history-button{
   
   width: 26%;
   background-color: var(--body-fon);
@@ -103,8 +109,8 @@ body.dark-theme {
 
 }
 
-.clear_history_block{
-  /* background-color: red; */
+.clear-history-block{
+ 
   width: 100%;
   text-align: right;
   padding-right: 10px;
@@ -114,23 +120,21 @@ body.dark-theme {
   
 }
 
-.history_button{
 
-  background-color: #3c445c;
-  
+.history-button{
+
+  background-color: #3c445c;  
   font-size: 14px;
   height: 25px;
   width: 68px;
 }
 
-#button_stop {
+/* #button-stop {
   display: none;
   margin-left: 3em;
-}
+} */
 
 #help{
-
-  
   margin-bottom: 2em;
 }
 
@@ -141,7 +145,7 @@ body.dark-theme {
   margin-top: 0px;
 }
 
-.error_button {
+.error-button {
   width: 32px;
   height: 32px;
   background-color: var(--main-bg-color);
@@ -171,7 +175,7 @@ body.dark-theme {
 	border-top: 1px solid var(--text-color);  
 }
 
-#results, #questions_counter{
+#results, #questions-counter{
   display: none;
   text-align: center;
   
@@ -187,26 +191,6 @@ p:active{
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
- body{
-  display: flex;
-  flex-direction:column;  
-  background-color: var(--body-fon);
-  padding-left: 1%;
-  padding-right: 1%;
-  font-size: var(--body-font-size); 
-  user-select: none;
-  hyphens: auto;
-  max-height:9000000px;
-
-} 
-
-label {
-  font-size: var(--btn-font-size);
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  color: var(--text-color);
-}
-
-
 
 p{
   font-size: var(--nochanged-font-size);
@@ -216,11 +200,46 @@ p{
 }
 
 
-.body-content{
-  flex: 1 0 auto;  
+.help-button-block, .menu-button-block{
+
+  /* background-color: #05fa3a; */
+  margin: 4px;
+  width: 50%;
+  height: 8%;
+  text-align: left;
+  
+
+}
+.help-button-block { 
+  text-align: right;
+  /* background-color: #05fa3a; */
 }
 
+.help-button{
 
+  background-color: var(--body-fon);
+  
+  color: var(--main-bg-color);
+  /* padding: 10px; */
+  text-align: center;
+  border: 1px var(--border-color);
+  border-radius: 50%;
+  /* text-decoration: none; */
+  /* display: inline-block; */
+  font-size: 20px;
+  margin-top: 2px;
+  /* cursor: pointer; */
+  width: 32px;
+  height: 32px;
+}
+
+.help-button:active, .clear-history-button:active {
+  
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  color: var(--main-fg-color);
+  border-color: var(--main-fg-color);
+
+}
 
 .help-text-format {
     color: var(--text-color);
@@ -230,28 +249,27 @@ p{
 }
 
 
-.home_block{  
+.home-block{  
   float: left; 
   padding-right: 12px;  
   /* background-color: #76f476; */
   
 }
 
-.stop_block{  
+/* .stop-block{  
   float: left;
   
-  /*background-color: blue;*/
-  
-}
+ 
+} */
 
-.next_block{   
+.next-block{   
   float: right;
   padding-left: 10px;
   /* background-color: yellow; */
 }
 
 
-.footer_button{ 
+.footer-button{ 
   text-align: center;    
   font-size: 1.8em;
   border-radius: var(--border-radius); 
@@ -262,13 +280,20 @@ p{
   cursor: pointer; 
   display: inline-block;
 }
-
-.header{  
-  height: 40px;
+.header-block {
+  /* height: 40px;
   padding: 0% 1%;  
-  display: block; 
+  display: block;  */
+  /* background-color: red; */
+  height: 10%;
+  padding: 2% 2%;   
+  display: flex;
+  flex-direction: row;
+  
   
 }
+
+
 
 .footer{    
   padding: 1% 1% 1% 1%;   
@@ -279,8 +304,8 @@ p{
  
 }
 
-/*#answers, #test, #errors_block, .results-block, .levels-block { */
-#answers, #test, #errors_block, .results-block {
+
+#answers, #test, #errors-block, .results-block {
   display: none; 
 }
 
@@ -303,38 +328,56 @@ button::-moz-focus-inner {
 
 
 
-.dropbtn {
+.menu-button {
    
-    color: var(--text-color);    
-    background-color: var(--body-fon);
-    padding: 4px;
-    border: none;
-    cursor: pointer;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+  color: var(--text-color);    
+  background-color: var(--body-fon);
+  padding: 4px;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
 }
 
 
-.dropdown-content, .history_dropdown {
-    display: none;
-    position: absolute;
-    background-color: var(--body-fon);    
-    width: 75%;
-    padding-left: 14px;   
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+.menu-dropdown-block, .history-dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--body-fon);    
+  padding: 0px 14px;
+  
   
 }
 
-/* .dropdown-block{
+/*=============================странца справки==========================*/
 
-  background-color: red;
-} */
+.help-block {
 
-.history_dropdown{
-  /* background-color: #75b37f; */
-  /* position: absolute; */
-  /* display: none;  */
+  display: none;
+  position: absolute;  
+  padding: 0px 10px;  
+  top: 0px;
+  left: 0px; 
+  /* text-align: center;
+  justify-content: center; */
+  width: 100%;  
+  height: 100%;  
+  background-color: var(--body-fon); 
+  box-sizing: border-box 
+
+
+    
+  
+  
+  
+}
+
+
+
+/*=============================странца истории тестирования==========================*/
+
+
+.history-dropdown{
+ 
   right: 2%;
   top: 9%;
   width: 60%;
@@ -343,7 +386,7 @@ button::-moz-focus-inner {
   border: 1px var(--border-color);
 }
 
-.history_block{
+.history-block{
   padding-left: 2%;
   width: 100%;
   max-width: 100%;
@@ -351,16 +394,34 @@ button::-moz-focus-inner {
   margin: 0 0 0 auto; /* то же, что margin-left: auto;  */ 
     
 }
-.clear_history_block{
-  /* background-color: aqua; */
+
+.clear-history-block{
+ 
+  width: 100%;
+  text-align: right;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  display: none;
   float: right;
   
 }
 
+/* .clear-history-block{
+ 
+  width: 100%;
+  text-align: right;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  display: none;
+  
+  
+} */
 
+
+/* 
 .visible {
   display: block;
-}
+} */
 
 
 .svg-burger{
@@ -370,7 +431,11 @@ button::-moz-focus-inner {
   height: 4px;
 }
 
-.dropbtn:active .svg-burger {
+/* .show-menu-button:active, .svg-burger {
+  fill: var(--main-fg-color);
+} */
+
+.show-menu-button:active .svg-burger {
   fill: var(--main-fg-color);
 }
 
@@ -381,26 +446,19 @@ svg{
   
 }
 
-.help_page, .profile_page {
-  position: absolute;
-  z-index:  100;
-  top: 0px;
-  left: 0px;
-  width: 90%;
-  height: 100%;
-  background-color: var(--body-fon);
-  display: none;
-  padding: 2% 5% 2% 5%;
-  float: left;
-  
-}
-.profile_page {
 
-  text-align: center;
-  justify-content: center;
-  
-  
+
+.show-menu-button {
+   
+  color: var(--text-color);    
+  background-color: var(--body-fon);
+  padding: 4px;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
 }
+
+
 
 
 .help-text-format{
@@ -411,6 +469,34 @@ svg{
 
 /*=============================странца поиска вопросов в тесте==========================*/
 
+.search-block {
+
+  text-align: center;
+  justify-content: center;
+  width: 100%;  
+  height: 100%;
+  display: none;
+  position: absolute;
+  background-color: var(--body-fon);  
+  top: 0px;
+  left: 0px;
+  box-sizing: border-box;
+  padding: 0px 10px;
+  
+}
+
+/* 
+.search-quest-block {
+
+  padding: 0px 10px;
+
+} */
+
+label {
+  font-size: var(--btn-font-size);
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: var(--text-color);
+}
 
 
 input[type="text"], textarea {
@@ -427,7 +513,7 @@ input[type="text"], textarea {
   margin-right: 20px;
 }
 
-.drop_down{
+.drop-down{
 
   background-color: var(--body-fon);
   font-size: 18px;
@@ -447,43 +533,38 @@ select:focus {
   box-shadow: 0;
 }
 
-/* .search_block {
-
-  background: blue;
-  padding: 1% 25% 1% 25%;
-  display: block;
-  
-} */
-
-/* .button_show_question {
-
-  width: 60%;
-  padding: 6px; 
-  
-} */
-
-.input_block {
+.input-block {
   margin-top: 20px;
   margin-bottom: 20px;
-
-  padding: 1%;
- 
+  /* margin-right: 24px; */
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 40px;
+  height: 48px;
+  /* background-color: #05fa3a; */
+}
+
+.back-button-block {
+
+  text-align: left;
+  margin: 6% 0%; 
+  /* background-color: #007373;  */
+  /* padding-left: 10px; */
+}
+
+.back-button {
+  
+  /* padding: 4px 6px;  */
+  color: var(--text-color);
+  background-color: var(--body-fon);
+  border: 1px var(--border-color);
+  border-radius: 4px;
+  font-size: 18px;
+  
   
 }
 
-.back_button_block {
-
-  text-align: left;
-  margin: 6% auto;
-
-}
-
-.button_show_question {
-
+.button-show-question {
   
   padding: 4px 6px; 
   color: var(--text-color);
@@ -495,7 +576,7 @@ select:focus {
   
 }
 
-.button_show_question:active {
+.button-show-question:active, .back-button:active {
   
   color: var(--main-fg-color);
   border-color: var(--main-fg-color);
@@ -519,21 +600,43 @@ select:-webkit-autofill:focus {
   /* transition: background-color 5000s ease-in-out 0s; */
 }
 
+/*=============================странца настроек профиля==========================*/
 
-/* select {
-  margin: 50px;
-   border: 1px solid #111;
-  background: transparent;
-  width: 150px;
-  padding: 5px 35px 5px 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  height: 34px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-   background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #eee;
-}  */
+.profile-block {
+
+  text-align: left;
+  justify-content: left;  
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  background-color: var(--body-fon);  
+  top: 0px;
+  left: 0px; 
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box
+  
+}
+
+.fieldset {
+
+  border-radius: 5px;  
+  /* margin: 0px 14px; */
+  border: var(--border-color);
+
+}
+
+.legend {
+
+  color: var(--text-color);
+  font-size: 20px;
+  font-family: var(--font-family);
+ 
+ }
+
+
+
 
 
 /* @media screen and (min-width:0\0) { 
@@ -543,7 +646,7 @@ select:-webkit-autofill:focus {
   }
 }
 
-.drop_down option:checked{
+.drop-down option:checked{
   
   border-width: 0px;
   box-sizing: content-box;

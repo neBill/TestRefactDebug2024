@@ -1,3 +1,11 @@
+
+const mainMenu = document.getElementById("main-dropdown-menu");
+const mainPage = document.getElementById("levels");
+const header = document.getElementById("header");
+const historyMenu = document.getElementById("history-dropdown-menu");
+const profilePage = document.getElementById("profile-page"); 
+const searchPage = document.getElementById("search-page"); 
+
 'use strict';
 
 function chageFontSize(buttonId){  
@@ -85,17 +93,17 @@ function getTestList() {
     s6 : [s6, "Стандарт 6р"],
     e6 : [e6, "Эксперт 6р"],
     econs : [econs, "Эконс"],
-    econs_added : [econs_added, "Эконс новые"],
+    econsadded : [econsAdded, "Эконс новые"],
   }    
   const oldTests = {
-    level_5b : [test_5b, "Стандарт 5р"],     
-    level_6b : [test_6b, "Стандарт 6р"],
-    level_6e : [test_6e, "Эксперт 6р"],
-    ot : [test_ot, "Охрана труда 1"],
-    ot_maxim : [test_maxim, "Охрана труда 2"],    
-    micro_5 : [micro_5, "Микротесты 5р"],
-    micro_6 : [micro_6, "Микротесты 6р"],
-    // temp_test : [test, "Temmmp"],
+    level5b : [test5b, "Стандарт 5р"],     
+    level6b : [test6b, "Стандарт 6р"],
+    level6e : [test6e, "Эксперт 6р"],
+    ot : [testOt, "Охрана труда 1"],
+    otmaxim : [testMaxim, "Охрана труда 2"],    
+    micro5 : [micro5, "Микротесты 5р"],
+    micro6 : [micro6, "Микротесты 6р"],
+    // temp-test : [test, "Temmmp"],
   }
 
   if(isNewBases) {      
@@ -121,7 +129,7 @@ function createTestButtons(testList){
 
       testButton.id = testId;
 
-      testButton.className = "test_button";
+      testButton.className = "test-button";
 
       testButton.textContent = testList[testId][1];
 
@@ -154,11 +162,14 @@ function removeButtons() {
 // }
 
 
-function showHistoryDropdown(){
 
-  //document.getElementById("dropDown_History").style.display = "block";
-  document.getElementById("dropDown_History").classList.toggle("visible");
-}
+
+// function showHistoryDropdown(){
+
+//   //document.getElementById("dropDown-History").style.display = "block";
+//  // document.getElementById("dropDown-History").classList.toggle("visible");
+
+// }
 
 // function showMenu() {
 
@@ -189,15 +200,23 @@ function showHistoryDropdown(){
 
 function showHideMenu() {
 
-  const ddMenu = document.getElementById("dropDownMenu");
-  let display = window.getComputedStyle(ddMenu).display;
+  
+  // let display = window.getComputedStyle(mainMenu).display;
+
+  let display = mainMenu.style.display;
+
   if(display === "none")
   {
-      ddMenu.style.display = "block";
+    mainMenu.style.display = "block";
   }
   else {
 
-    ddMenu.style.display = "none";
+    mainMenu.style.display = "none";
+
+    //document.getElementById("levels").style.display = "block";
+
+    mainPage.style.display = "block";
+
     saveSettings();
 
     removeButtons();
@@ -216,15 +235,18 @@ function showHideMenu() {
 
 function hideHelpPage() {
 
-  document.getElementById("help_block").style.display = "none"; 
-  //alert('hhh')
+  document.getElementById("help-page").style.display = "none"; 
+  showBlocks();
 
 }
 
 function showHelpPage() {
 
-  document.getElementById("help_block").style.display = "block"; 
-  showHideMenu();
+  document.getElementById("help-page").style.display = "block"; 
+  // document.getElementById("dropDownMenu").style.display = "none";
+  // document.getElementById("levels").style.display = "none"; 
+
+  hideBlocks();  
 
 }
 
@@ -242,10 +264,10 @@ function loadSettings(){
 
 function apply(togglesState){  
 
-  document.getElementById('theme_toggle').checked = togglesState.isDarkTheme; 
-  document.getElementById('shuffle_toggle').checked = togglesState.isShuffle;
-  document.getElementById('learn_mode_toggle').checked = togglesState.isLearn;
-  document.getElementById('new_bases_toggle').checked = togglesState.isNewBases;
+  document.getElementById('theme-toggle').checked = togglesState.isDarkTheme; 
+  document.getElementById('shuffle-toggle').checked = togglesState.isShuffle;
+  document.getElementById('learn-mode-toggle').checked = togglesState.isLearn;
+  document.getElementById('new-bases-toggle').checked = togglesState.isNewBases;
 
   isLearnMode = togglesState.isLearn;
   isShuffle = togglesState.isShuffle;
@@ -286,11 +308,11 @@ function apply(togglesState){
 function saveSettings(){  
 
   const togglesState = {
-   // isHistory:document.getElementById('save_history_toggle').checked,
-    isLearn:document.getElementById('learn_mode_toggle').checked,
-    isShuffle:document.getElementById('shuffle_toggle').checked,
-    isDarkTheme:document.getElementById('theme_toggle').checked,
-    isNewBases:document.getElementById('new_bases_toggle').checked,
+   // isHistory:document.getElementById('save-history-toggle').checked,
+    isLearn:document.getElementById('learn-mode-toggle').checked,
+    isShuffle:document.getElementById('shuffle-toggle').checked,
+    isDarkTheme:document.getElementById('theme-toggle').checked,
+    isNewBases:document.getElementById('new-bases-toggle').checked,
   }
 
   apply(togglesState);
@@ -340,25 +362,131 @@ function rem() {
   
 }
 
-function showProfilePage() {
+///////////////////////////////////////////////////////////////////////////
 
-  //alert("ddd")
+//открыть страницу поиска
+// function showSearchPage() {  
 
-  document.getElementById("profile_block").style.display = "block"; 
+//   document.getElementById("search-page").style.display = "block"; 
+//   // document.getElementById("dropDownMenu").style.display = "none";
+//   // document.getElementById("levels").style.display = "none"; 
+//   hideBlocks();
 
-  const currentTestList = getTestList();
+//   const currentTestList = getTestList();
   
-  fillTestsList(currentTestList);
+//   fillTestsList(currentTestList);  
+
+//  // removeQuestionButtons('qust-btn-container');
+
+// }
+
+// //закрыть страницу поиск
+// function hideSearchPage() {
+
+//   clearQuestionBlock('qust-btn-container');
+
+//   document.getElementById("search-page").style.display = "none";   
+//   showBlocks();
+
+// }
+
+//открыть/закрыть страницу поиска
+function showHideSearchPage() {  
+
+  let display = searchPage.style.display;
+  
+  if(display === "block") {   
+
+    clearQuestionBlock('qust-btn-container');
+
+    searchPage.style.display = "none";   
+    showBlocks();
+
+  } else {   
+
+    searchPage.style.display = "block";   
+    hideBlocks();
+    const currentTestList = getTestList();  
+    fillTestsList(currentTestList);  
+
+  }
+
+}
+
+// function showProfilePage() {
+
+//   //alert("ddd")
+
+//   // document.getElementById("profile-page").style.display = "block"; 
+//   // document.getElementById("dropDownMenu").style.display = "none";
+//   // document.getElementById("levels").style.display = "none"; 
+//   //hideMenu();
+//   profilePage.style.display = "block";
+//   hideBlocks();
+
+
+// }
+
+// function hideProfilePage() {
+
+//   // document.getElementById("profile-page").style.display = "none"; 
+//   //document.getElementById("dropDownMenu").style.display = "block";
+//   mainMenu.style.display = "block";
+//   profilePage.style.display = "none";
+
+   
+//   //alert('hhh')
+
+// }
+
+function showHideProfilePage() {
+
+  let display = profilePage.style.display;
+  
+  if(display === "block") {   
+
+    profilePage.style.display = "none"; 
+    mainMenu.style.display = "block";
+
+  } else {   
+
+    profilePage.style.display = "block";
+    hideBlocks();
+  }
+
+}
+
+
+
+function hideBlocks() {
  
-  //hideMenu();
+  mainMenu.style.display = "none";
+  mainPage.style.display = "none";
+  header.style.display = "none";
 
 }
 
-function hideProfilePage() {
+function showBlocks() {
 
-  document.getElementById("profile_block").style.display = "none"; 
-  //alert('hhh')
+  mainMenu.style.display = "block";
+  mainPage.style.display = "block";
+  header.style.display = "flex";
 
 }
 
+function showHideHisotryMenu() { 
+  
+  let display = historyMenu.style.display;
+  
+  if(display == "block") {   
+    historyMenu.style.display = "none"; 
+  } else {    
+    historyMenu.style.display = "block";
+  }
+ 
+}
+
+
+
+  
 

@@ -5,6 +5,7 @@ const header = document.getElementById("header");
 const historyMenu = document.getElementById("history-dropdown-menu");
 const profilePage = document.getElementById("profile-page"); 
 const searchPage = document.getElementById("search-page"); 
+const numberInput = document.getElementById("input-number");
 
 'use strict';
 
@@ -201,13 +202,16 @@ function removeButtons() {
 function showHideMenu() {
 
   
-  // let display = window.getComputedStyle(mainMenu).display;
+   let display = window.getComputedStyle(mainMenu).display;  
 
-  let display = mainMenu.style.display;
+ // alert(display)
+
+  
 
   if(display === "none")
   {
     mainMenu.style.display = "block";
+    //alert('show menu')
   }
   else {
 
@@ -243,9 +247,6 @@ function hideHelpPage() {
 function showHelpPage() {
 
   document.getElementById("help-page").style.display = "block"; 
-  // document.getElementById("dropDownMenu").style.display = "none";
-  // document.getElementById("levels").style.display = "none"; 
-
   hideBlocks();  
 
 }
@@ -407,7 +408,8 @@ function showHideSearchPage() {
     searchPage.style.display = "block";   
     hideBlocks();
     const currentTestList = getTestList();  
-    fillTestsList(currentTestList);  
+    fillTestsList(currentTestList); 
+    numberInput.value = "";
 
   }
 
@@ -441,17 +443,22 @@ function showHideSearchPage() {
 
 function showHideProfilePage() {
 
-  let display = profilePage.style.display;
+  let display = profilePage.style.display; 
   
   if(display === "block") {   
 
     profilePage.style.display = "none"; 
     mainMenu.style.display = "block";
+    header.style.display = "flex";
+
+    //alert('block')
 
   } else {   
 
     profilePage.style.display = "block";
     hideBlocks();
+
+    //alert('none')
   }
 
 }
@@ -468,7 +475,7 @@ function hideBlocks() {
 
 function showBlocks() {
 
-  mainMenu.style.display = "block";
+  mainMenu.style.display = "none";
   mainPage.style.display = "block";
   header.style.display = "flex";
 

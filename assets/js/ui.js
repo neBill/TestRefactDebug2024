@@ -391,6 +391,8 @@ homeButton.addEventListener("click", function(event) {
 
     showResultsPage();
     showTestResult(false);
+    historyMenu.style.display = "none";
+   
 
 
 

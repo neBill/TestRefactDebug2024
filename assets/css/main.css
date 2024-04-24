@@ -339,7 +339,7 @@ button::-moz-focus-inner {
 }
 
 
-.menu-dropdown-block, .history-dropdown {
+.menu-dropdown-block, .history-dropdown-block {
   display: none;
   position: absolute;
   background-color: var(--body-fon);    
@@ -376,14 +376,15 @@ button::-moz-focus-inner {
 /*=============================странца истории тестирования==========================*/
 
 
-.history-dropdown{
+.history-dropdown-block{
  
   right: 2%;
   top: 9%;
   width: 60%;
   padding: 26px 14px; 
-  height: 8%;
+  /* height: 8%; */
   border: 1px var(--border-color);
+  /* background-color: #05fa3a; */
 }
 
 .history-block{

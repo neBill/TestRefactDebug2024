@@ -56,6 +56,16 @@ body{
   flex: 1 0 auto;  
 }
 
+.profile-title {
+
+  color: var(--text-color); 
+  text-align: center; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px; 
+  
+}
+
+
 
 .button, .test-button, .count-button, .option-button, .question-button, .history-button, .clear-history-button {
   width: 100%; 

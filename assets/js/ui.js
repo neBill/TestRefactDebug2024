@@ -392,9 +392,6 @@ homeButton.addEventListener("click", function(event) {
     showResultsPage();
     showTestResult(false);
     historyMenu.style.display = "none";
-   
-
-
 
   }
   if (buttonText == "На главную") { 
@@ -906,6 +903,11 @@ function getChosenTest(testName) {
 
   return test;
 }
+
+
+document.querySelectorAll('input[type="radio"][name="div"]').forEach(radio => {
+  radio.addEventListener('change', () => console.log(radio.value));
+});
 
 
 

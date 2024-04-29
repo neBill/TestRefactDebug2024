@@ -6,6 +6,8 @@ const historyMenu = document.getElementById("history-dropdown-menu");
 const profilePage = document.getElementById("profile-page"); 
 const searchPage = document.getElementById("search-page"); 
 const numberInput = document.getElementById("input-number");
+const testProfile = document.getElementById('test-profile');
+const profileTitle = document.getElementById('profile-title');
 
 'use strict';
 
@@ -83,6 +85,16 @@ window.addEventListener("load", ()=>{
 
 
 });
+
+const profileList = {
+  
+  pir: "Пиролиз",
+  per: "Перегонка",
+  hyd: "Гидрирование",
+  sep: "Газоразделение",
+  com: "Компрессия",
+ 
+}
 
 function getTestList() {  
 
@@ -451,14 +463,31 @@ function showHideProfilePage() {
     mainMenu.style.display = "block";
     header.style.display = "flex";
 
-    //alert('block')
+    var options = document.getElementsByName('div');
+
+    // var option_value;
+
+    for(var i = 0; i < options.length; i++){
+        if(options[i].checked){
+            option_value = options[i].id;
+            //alert(options[i].checked)
+
+            break;
+        }
+
+        
+    }
+
+    profileTitle.innerHTML = profileList[option_value];
+    //document.getElementById('profile-title').innerHTML = option_value;
 
   } else {   
 
     profilePage.style.display = "block";
     hideBlocks();
 
-    //alert('none')
+    
+    //profileTitle
   }
 
 }

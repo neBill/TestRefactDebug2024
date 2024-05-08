@@ -6,8 +6,14 @@ const historyMenu = document.getElementById("history-dropdown-menu");
 const profilePage = document.getElementById("profile-page"); 
 const searchPage = document.getElementById("search-page"); 
 const numberInput = document.getElementById("input-number");
-const testProfile = document.getElementById('test-profile');
-const profileTitle = document.getElementById('profile-title');
+//const testProfile = document.getElementById('test-profile');
+const testButtons = document.getElementById('levels');
+const setProfile = document.getElementById('set-profile-button');
+
+
+// const profileTitle = document.getElementById('profile-title');
+
+let isProfile = false;
 
 'use strict';
 
@@ -75,80 +81,149 @@ window.addEventListener("load", ()=>{
   // testList.push(test);
   //document.body.className = 'light-theme';
 
+  if (!isProfile) {
+    // alert(isProfile)
+    createButton("set-profile-button", "set-profile", "test-button", "Выбрать профиль", testButtons);
+  }
   
-  
-  const testList = getTestList()
-  
-  //
-  createTestButtons(testList)
+  const testList = getTestList(); 
+ 
+  //createTestButtons(testList);
 
-
+  createTestButtons(testList);
 
 });
 
-const profileList = {
+
+
+function createButton(id, name, className, textContent, parant) {
+
+  const button = document.createElement('button');   
+  button.id = id;
+  button.className = className;
+  button.textContent = textContent;
+  button.name = name;
+
+  parant.appendChild(button);
+
+}
+
+const profilesList = {
   
-  pir: "Пиролиз",
-  per: "Перегонка",
-  hyd: "Гидрирование",
-  sep: "Газоразделение",
-  com: "Компрессия",
- 
+  pir: ["Пиролиз", "pyrolysis"],
+  per: ["Перегонка", "distillation"],
+  hyd: ["Гидрирование", "hydrogenation"],
+  sep: ["Газоразделение", "separation"],
+  com: ["Компрессия", "composition"]
+  
 }
 
-function getTestList() {  
+const levelsList = {
 
-  const newTests = {
-    b5 : [b5, "База 5р"],     
-    s5 : [s5, "Стандарт 5р"],
-    e5 : [e5, "Эксперт 5р"],    
-    b6 : [b6, "База 6р"],
-    s6 : [s6, "Стандарт 6р"],
-    e6 : [e6, "Эксперт 6р"],
-    econs : [econs, "Эконс"],
-    econsadded : [econsAdded, "Эконс новые"],
-  }    
-  const oldTests = {
-    level5b : [test5b, "Стандарт 5р"],     
-    level6b : [test6b, "Стандарт 6р"],
-    level6e : [test6e, "Эксперт 6р"],
-    ot : [testOt, "Охрана труда 1"],
-    otmaxim : [testMaxim, "Охрана труда 2"],    
-    micro5 : [micro5, "Микротесты 5р"],
-    micro6 : [micro6, "Микротесты 6р"],
-    // temp-test : [test, "Temmmp"],
-  }
-
-  if(isNewBases) {      
-    return newTests;    
-  }
-  else {  
-    return oldTests;
-  }
+ lev5: ["5 p", "category5"],
+ lev6: ["6 p", "category6"],
+ lev6Plus: ["6+ p", "category6plus"]
 
 }
+
+// const generalTests = {
+      
+//   ot: [testOt, "Охрана труда 1"],
+//   otmaxim: [testMaxim, "Охрана труда 2"], 
+//   econs: [econs, "Эконс"],
+//   econsadded: [econsAdded, "Эконс новые"]
+     
+// }
+
+
+//////////////////////////////////////////////old function////////////////////////////
+// function getTestList() {  
+
+//   const newTests = {
+//     b5 : [b5, "База 5р"],     
+//     s5 : [s5, "Стандарт 5р"],
+//     e5 : [e5, "Эксперт 5р"],    
+//     b6 : [b6, "База 6р"],
+//     s6 : [s6, "Стандарт 6р"],
+//     e6 : [e6, "Эксперт 6р"],
+//     econs : [econs, "Эконс"],
+//     econsadded : [econsAdded, "Эконс новые"],
+//   }    
+//   const oldTests = {
+//     level5b : [test5b, "Стандарт 5р"],     
+//     level6b : [test6b, "Стандарт 6р"],
+//     level6e : [test6e, "Эксперт 6р"],
+//     ot : [testOt, "Охрана труда 1"],
+//     otmaxim : [testMaxim, "Охрана труда 2"],    
+//     micro5 : [micro5, "Микротесты 5р"],
+//     micro6 : [micro6, "Микротесты 6р"],
+//     // temp-test : [test, "Temmmp"],
+//   }
+
+//   if(isNewBases) {      
+//     return newTests;    
+//   }
+//   else {  
+//     return oldTests;
+//   }
+
+// }
+
+function getTestList() {
+
+  const generalTests = {
+      
+      ot: [testOt, "Охрана труда 1"],
+      otmaxim: [testMaxim, "Охрана труда 2"], 
+      econs: [econs, "Эконс"],      
+         
+    }
+
+    return generalTests;
+    
+
+}
+
+
 
 function createTestButtons(testList){
 
   
+  //alert(testList)
 
-    const testButtons = document.getElementById('levels');
+  // const testButtons = document.getElementById('levels');
 
-    for(let testId in testList){
+  const profileTitle = document.createElement('p');
 
-      const testButton = document.createElement('button');
+  //profileTitle.innerHTML = `${profilesList[division][0]} ${levelsList[level][0]}`;
 
-     // alert(testId)
+  profileTitle.innerHTML = "ron";
 
-      testButton.id = testId;
+  testButtons.appendChild(profileTitle);
 
-      testButton.className = "test-button";
+  // const testButtons = document.getElementById('levels');
 
-      testButton.textContent = testList[testId][1];
 
-      testButtons.appendChild(testButton);
 
-    }
+  for(let testId in testList){
+
+    // const testButton = document.createElement('button');    
+
+    // testButton.id = testId;
+
+    // testButton.name = "test-btn";   
+
+    // testButton.className = "test-button";
+
+    // testButton.textContent = testList[testId][1];
+
+    // testButtons.appendChild(testButton);
+
+    createButton(testId, "test", "test-button", testList[testId][1], testButtons)
+ 
+    //id, className, textContent, parant
+
+  }
 
 }
 
@@ -463,23 +538,43 @@ function showHideProfilePage() {
     mainMenu.style.display = "block";
     header.style.display = "flex";
 
-    var options = document.getElementsByName('div');
+    const divisions = document.getElementsByName('div');  
+    const levels = document.getElementsByName('lev'); 
+    let division;
+    let level;
 
-    // var option_value;
-
-    for(var i = 0; i < options.length; i++){
-        if(options[i].checked){
-            option_value = options[i].id;
-            //alert(options[i].checked)
-
-            break;
-        }
-
-        
+    for(var i = 0; i < divisions.length; i++){
+      if(divisions[i].checked){
+          division = divisions[i].id;
+          break;
+      }        
     }
 
-    profileTitle.innerHTML = profileList[option_value];
-    //document.getElementById('profile-title').innerHTML = option_value;
+    for(var i = 0; i < levels.length; i++){
+      if(levels[i].checked){
+          level = levels[i].id;
+          break;
+      }        
+    }
+
+    // profileTitle.innerHTML = `${profilesList[division][0]} ${levelsList[level][0]}`;
+
+   
+   
+      var s = document.createElement('script');
+      //s.type = 'text/javascript';
+     // var code = 'alert("hello world!");';
+
+      s.src = `data/${profilesList[division][1]}/${levelsList[level][1]}.js`;
+     // try {
+        //s.appendChild(document.createTextNode(code));
+        document.body.appendChild(s);
+     // } catch (e) {
+       // s.text = code;
+        //document.body.appendChild(s);
+     // }
+    
+   
 
   } else {   
 

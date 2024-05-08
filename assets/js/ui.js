@@ -684,14 +684,74 @@ function getErrorsArray() {
 
 }
 
+// function chooseTest() {
+
+//   currentTest.id = event.target.id;   
+
+
+  
+//   let currentTestList = getTestList();
+  
+//   currentTest.test = currentTestList[currentTest.id][0]
+
+//   //tempAnswer = currentTestList[currentTest.id][0].slice();
+
+//   tempAnswer = JSON.parse(JSON.stringify(currentTestList[currentTest.id][0]))
+
+//   //alert(tempAnswer.length)
+
+//   if (isShuffle) {   
+
+//     //alert('shuffle')
+
+//     shuffle(currentTest.test);  
+
+//     currentTest.id += '$';
+
+//   } 
+
+//   if(isLearnMode) { 
+
+//     currentTest.id += '*';
+
+//   }
+
+//   currentIndex.index = getCurrentIndex(currentTest.id);
+
+//   showChosenTest(event.target.textContent, currentTest.test.length); 
+
+//   //alert(currentTest.test[0])
+
+//   updateQuestionBlock();
+
+// }
+
 
 
 //choose test
-document.addEventListener("click", function(event) {    
+document.addEventListener("click", function(event) {  
+  
+ 
 
-  if(event.target.className !== "test-button") return;
+  if(event.target.name == "set-profile") {
 
+     alert(event.target.textContent);
+  }
+
+  if(event.target.name !== "test") return;
+
+  // if(event.target.id == "set-profile-button") {
+
+    //alert(event.target.id)
+  //}
+
+   
+
+ // alert(event.target.id)
+ 
   currentTest.id = event.target.id;   
+
+
   
   let currentTestList = getTestList();
   
